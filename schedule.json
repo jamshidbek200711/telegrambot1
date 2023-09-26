@@ -1,0 +1,48 @@
+{
+    "Dushanba": {
+      "1-dars": "Õzbekiston tarixi",
+      "2-dars": "Biologiya",
+      "3-dars": "Ona-tili",
+      "4-dars": "Ingliz-tili",
+      "5-dars": "Huquq",
+      "6-dars": "Adabiyot"
+    },
+    "Seshanba": {
+      "1-dars": "Geografiya",
+      "2-dars": "Algebra",
+      "3-dars": "Jismoniy tarbiya",
+      "4-dars": "Jismoniy tarbiya",
+      "5-dars": "Fizika",
+      "6-dars": "Ona-tili"
+    },
+    "Chorshanba": {
+      "1-dars": "Kimyo",
+      "2-dars": "Tarbiya",
+      "3-dars": "Informatika",
+      "4-dars":" Informatika",
+      "5-dars": "Geometriya"
+    },
+    "Payshanba": {
+      "1-dars": "Biologiya",
+      "2-dars": "Jahon tarixi",
+      "3-dars": "Fizika",
+      "4-dars": "Rus-tili",
+      "5-dars": "Algebra"
+    },
+    "Juma": {
+      "1-dars": "Ma'naviyat soati",
+      "2-dars": "Kimyo",
+      "3-dars": "Algebra",
+      "4-dars": "Geografiya",
+      "5-dars": "Ingliz-tili",
+      "6-dars": "Ingliz-tili"
+    },
+    "Shanba": {
+      "1-dars": "Adabiyot",
+      "2-dars": "Geometriya",
+      "3-dars": "Rus-tili",
+      "4-dars": "YoChT"
+    }
+}
+
+  
