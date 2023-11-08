@@ -5,24 +5,15 @@ require('dotenv').config()
 const token = process.env.token; 
 const bot = new TelegramBot(token, { polling: true });
 
-// `🏛 Haftalik dars jadvali.`,  `🏛 Kunlik dars jadvali.` 'button'larini chiqarish
+// `🏛 Kundalik.com`,  `🏛 Dars jadvallari.` 'button'larini chiqarish
 const home = JSON.stringify({
   resize_keyboard: true,
   keyboard: [
-    [`🏛 Haftalik dars jadvali.`, `🏛 Kunlik dars jadvali.`]
+    [`🏛 Kundalik.com`, `🏛 Dars jadvallari.`],
+            [`⏱️ Dars vaqtlari.`]
   ]
 });
 
-// Dars jadvalini o'qish
-function readSchedule() {
-  try {
-    const schedule = JSON.parse(fs.readFileSync('schedule.json', 'utf8')); // Ma'lumotlar bazasini o'qish
-    return schedule;
-  } catch (error) {
-    console.error("Xatolik: Dars jadvali o'qib bo'lmadi.");
-    return "Xatolik: Dars jadvali o'qib bo'lmadi.";
-  }
-}
 
 // /start komandasiga javob berish
 bot.onText(/\/start/, (msg) => {
@@ -37,22 +28,16 @@ bot.onText(/\/start/, (msg) => {
 });
 
 // Haftalik dars jadvalini qaytarish
-bot.onText(/🏛 Haftalik dars jadvali./, (msg) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId,`
-  📌Dushanba:\n 1.Õzbekiston tarixi.\n 2.Biologiya.\n 3.Ona-tili.\n 4.Ingliz-tili.\n 5.Huquq.\n 6.Adabiyot.\n 
-  📌Seshanba:\n 1.Geografiya.\n 2.Algebra.\n 3.Jismoniy tarbiya.\n 4.Jismoniy tarbiya.\n 5.Fizika.\n 6.Ona-tili.\n
-  📌Chorshanba:\n 1.Kimyo.\n 2.Tarbiya.\n 3.Informatika.\n 4.Informatika.\n 5.Geometriya.\n
-  📌Payshanba:\n 1.Biologiya.\n 2.Jahon tarixi.\n 3.Fizika.\n 4.Rus-tili.\n 5.Algebra.\n
-  📌Juma:\n 1.Ma'naviyat soati.\n 2.Kimyo.\n 3.Algebra.\n 4.Geografiya.\n 5.Ingliz-tili.\n 6.Ingliz-tili.\n
-  📌Shanba:\n 1.Adabiyot.\n 2.Geometriya.\n 3.Rus-tili.\n 4.YoChT`);
-  });
+bot.onText(/🏛 Kundalik.com/, (msg) => {
+            const chatId = msg.chat.id;
+            bot.sendMessage(chatId, `https://emaktab.uz/userfeed 👈 ko'rish uchun bosing.`);
+});
 
-//  "🏛 Kunlik dars jadvali." komandasiga kiruvchi 'button'larni chiqarish
+//  "🏛 Dars jadvallari." komandasiga kiruvchi 'button'larni chiqarish
 bot.on("message", (msg) => {
   chatId = msg.chat.id;
   text = msg.text;  
-  if(text == "🏛 Kunlik dars jadvali."){
+  if(text == "🏛 Dars jadvallari."){
     option = {
       reply_to_message_id: msg.message_id,
       parse_mode: "markdown",
@@ -79,47 +64,75 @@ bot.on("message", (msg) => {
   }
 });
 
-// Dushanba dars jadvalini chiqarish
-bot.onText(/🔎Dushanba/, (msg) => {
-  const chatId = msg.chat.id;
-  const schedule = readSchedule();
-  bot.sendMessage(chatId, "Kunlik dars jadvali:\n" + JSON.stringify(schedule.Dushanba, null, 2));
-});
 
-// Seshanba dars jadvalini chiqarish
-bot.onText(/🔎Seshanba/, (msg) => {
-  const chatId = msg.chat.id;
-  const schedule = readSchedule();
-  bot.sendMessage(chatId, "Kunlik dars jadvali:\n" + JSON.stringify(schedule.Seshanba, null, 2));
-});
 
-// Chorshanba dars jadvalini chiqarish
-bot.onText(/🔎Chorshanba/, (msg) => {
-  const chatId = msg.chat.id;
-  const schedule = readSchedule();
-  bot.sendMessage(chatId, "Kunlik dars jadvali:\n" + JSON.stringify(schedule.Chorshanba, null, 2)); 
-});
+//   Dars vaqtlarini chiqarish
+function readFile(filepath) {
+  try {
+    const data = fs.readFileSync(filepath, 'utf8');
+    return data;
+  } catch (error) {
+    console.error(`Error reading file: ${error.message}`);
+    return null;
+  }
+}
 
-// Payshanba dars jadvalini chiqarish
-bot.onText(/🔎Payshanba/, (msg) => {
-  const chatId = msg.chat.id;
-  const schedule = readSchedule();
-  bot.sendMessage(chatId, "Kunlik dars jadvali:\n" + JSON.stringify(schedule.Payshanba, null, 2)); 
-});
 
-// Juma dars jadvalini chiqarish
-bot.onText(/🔎Juma/, (msg) => {
-  const chatId = msg.chat.id;
-  const schedule = readSchedule();
-  bot.sendMessage(chatId, "Kunlik dars jadvali:\n" + JSON.stringify(schedule.Juma, null, 2)); 
-});
+const fileContent = readFile('Haftalar/soatlar.txt');
+if (fileContent) {
+  bot.onText(/⏱️ Dars vaqtlari./, (msg) => {
+    const chatId = msg.chat.id;
+    bot.sendMessage(chatId, fileContent);
+  })
+}
 
-// Shanba dars jadvalini chiqarish
-bot.onText(/🔎Shanba/, (msg) => {
-  const chatId = msg.chat.id;
-  const schedule = readSchedule();
-  bot.sendMessage(chatId, "Kunlik dars jadvali:\n" + JSON.stringify(schedule.Shanba, null, 2)); 
-});
+const dushanba = readFile('Haftalar/dushanba.txt')
+if(dushanba){
+  bot.onText(/🔎Dushanba/, (msg) => {
+    const chatId = msg.chat.id;
+    bot.sendMessage(chatId, dushanba);
+  })
+}
+
+const seshanba = readFile('Haftalar/seshanba.txt')
+if(seshanba){
+  bot.onText(/🔎Seshanba/, (msg) => {
+    const chatId = msg.chat.id;
+    bot.sendMessage(chatId, seshanba);
+  })
+}
+
+const chorshanba = readFile('Haftalar/chorshanba.txt')
+if(chorshanba){
+  bot.onText(/🔎Chorshanba/, (msg) => {
+    const chatId = msg.chat.id
+    bot.sendMessage(chatId, chorshanba)
+  })
+}
+
+const payshanba = readFile('Haftalar/payshanba.txt')
+if(payshanba){
+  bot.onText(/🔎Payshanba/, (msg) => {
+    const chatId = msg.chat.id
+    bot.sendMessage(chatId, payshanba)
+  })
+}
+
+const juma = readFile('Haftalar/juma.txt')
+if(juma){
+  bot.onText(/🔎Juma/, (msg) => {
+    const chatId = msg.chat.id
+    bot.sendMessage(chatId, juma)
+  })
+}
+
+const shanba = readFile('Haftalar/shanba.txt')
+if(shanba){
+  bot.onText(/🔎Shanba/, (msg) => {
+    const chatId = msg.chat.id
+    bot.sendMessage(chatId, shanba)
+  })
+}
 
 // Botni ishga tushirish
 bot.on('polling_error', (error) => {

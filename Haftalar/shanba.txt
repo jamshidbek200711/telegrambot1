@@ -1,0 +1,4 @@
+1-dars: Adabiyot
+2-dars: Geometriya
+3-dars: Rus-tili
+4-dars: YoChT

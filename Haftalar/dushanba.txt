@@ -1,0 +1,6 @@
+1-dars: Õzbekiston tarixi
+2-dars: Biologiya
+3-dars: Ona-tili
+4-dars: Ingliz-tili
+5-dars: Huquq
+6-dars: Adabiyot

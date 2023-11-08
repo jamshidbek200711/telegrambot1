@@ -1,0 +1,6 @@
+1-dars: Geografiya
+2-dars: Algebra
+3-dars: Jismoniy tarbiya
+4-dars: Jismoniy tarbiya
+5-dars: Fizika
+6-dars: Ona-tili

@@ -1,0 +1,5 @@
+1-dars: Biologiya
+2-dars: Jahon tarixi
+3-dars: Fizika
+4-dars: Rus-tili
+5-dars: Algebra

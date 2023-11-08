@@ -1,0 +1,5 @@
+1-dars: Kimyo
+2-dars: Tarbiya
+3-dars: Informatika
+4-dars: Informatika
+5-dars: Geometriya

@@ -1,0 +1,6 @@
+1-dars: Ma'naviyat soati
+2-dars: Kimyo
+3-dars: Algebra
+4-dars: Geografiya
+5-dars: Ingliz-tili
+6-dars: Ingliz-tili
