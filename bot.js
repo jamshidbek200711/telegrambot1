@@ -24,7 +24,7 @@ bot.onText(/\/start/, (msg) => {
     reply_markup: home
   }
   
-  bot.sendMessage(chatId, `Assalomu alaykum, 338-maktab 10-'B' sinfining maxsus botiga xush kelibsiz.`, option);
+  bot.sendMessage(chatId, `Assalomu alaykum, 338-maktab 11-'B' sinfining maxsus botiga xush kelibsiz.`, option);
 });
 
 // Haftalik dars jadvalini qaytarish
